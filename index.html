@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Goodnight ✨</title>
+  <style>
+    :root{
+      --bg1:#0b1026;
+      --bg2:#1a1f3b;
+      --accent:#b497ff;
+      --neon:#9be7ff;
+      --pink:#ff8bd1;
+      --gold:#ffd580;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0}
+    body{
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue, Arial;
+      background: radial-gradient(1200px 800px at 70% 10%, #202753 0%, var(--bg1) 40%, #0a0f21 100%),
+                  linear-gradient(180deg, var(--bg2), #070b18 65%);
+      color:#e9ecff;
+      overflow:hidden;
+    }
+
+    .star{position:fixed; border-radius:50%; opacity:.9; pointer-events:none}
+    @keyframes twinkle{0%,100%{transform:scale(1);opacity:.9} 50%{transform:scale(.6);opacity:.3}}
+
+    .shooting{
+      position:fixed; top:-10px; left:-10px; width:2px; height:2px; background:#fff; border-radius:50%;
+      box-shadow: 0 0 8px #fff, 0 0 16px var(--neon), 0 0 32px var(--neon);
+      transform: rotate(315deg) translate3d(0,0,0);
+      animation: shoot 2.2s linear forwards;
+    }
+    .shooting::after{
+      content:""; position:absolute; right:2px; top:50%; transform:translateY(-50%);
+      width:180px; height:2px; border-radius:2px; background:linear-gradient(90deg, #fff, rgba(255,255,255,0));
+      filter: drop-shadow(0 0 6px var(--neon));
+    }
+    @keyframes shoot{to{transform: rotate(315deg) translate3d(140vw, 140vh, 0); opacity:0}}
+
+    .wrap{ position:relative; height:100%; display:grid; place-items:center; padding:24px }
+    .card{
+      position:relative; width:min(680px, calc(100% - 32px)); padding:38px 28px 30px; text-align:center;
+      background:rgba(18,23,49,.45); border:1px solid rgba(255,255,255,.08);
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      border-radius:24px; box-shadow: 0 10px 40px rgba(0,0,0,.45), inset 0 0 40px rgba(155,231,255,.06);
+    }
+
+    .moon{ position:absolute; right:24px; top:-26px; width:96px; height:96px; border-radius:50%;
+      background: radial-gradient(circle at 30% 30%, #fff 0%, #fef6d6 40%, #ffdca8 70%, #f4b86a 100%);
+      box-shadow: 0 0 20px rgba(255,214,130,.7), 0 0 60px rgba(255,214,130,.35);
+      overflow:hidden; filter:saturate(1.05)
+    }
+    .moon::before{ content:""; position:absolute; inset:0; border-radius:50%;
+      background: radial-gradient(circle at 60% 55%, rgba(0,0,0,.12) 0 38%, transparent 40%),
+                  radial-gradient(circle at 35% 30%, rgba(0,0,0,.18) 0 24%, transparent 26%),
+                  radial-gradient(circle at 70% 80%, rgba(0,0,0,.15) 0 18%, transparent 20%);
+      mix-blend-mode:multiply; opacity:.9
+    }
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+    .moon{ animation: float 6s ease-in-out infinite }
+
+    .title{ font-size: clamp(32px, 6vw, 58px); font-weight:800; margin:0 0 8px; letter-spacing:.4px;
+      text-shadow: 0 0 6px rgba(155,231,255,.85), 0 0 18px rgba(155,231,255,.6), 0 0 36px rgba(155,231,255,.35);
+    }
+    .title .spark{ display:inline-block; animation: sparkle 2.8s ease-in-out infinite }
+    @keyframes sparkle{0%,100%{filter:drop-shadow(0 0 0 #fff)} 50%{filter:drop-shadow(0 0 8px #fff)}}
+
+    .subtitle{ margin:0; font-size: clamp(16px, 2.4vw, 20px); opacity:.92 }
+
+    .chip{ display:inline-flex; align-items:center; gap:8px; margin:14px auto 0; padding:10px 14px; border-radius:999px;
+      border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.06); font-size:14px; opacity:.95 }
+    .chip b{color:var(--gold); position:relative; animation: glowName 3s ease-in-out infinite }
+
+    @keyframes glowName {
+      0%,100%{text-shadow:0 0 6px var(--pink),0 0 12px var(--neon); color:var(--gold)}
+      50%{text-shadow:0 0 16px var(--neon),0 0 30px var(--pink); color:var(--pink)}
+    }
+
+    .row{ display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:20px }
+    .btn{ padding:10px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.15);
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02)); color:#e9ecff; cursor:pointer;
+      transition: transform .15s ease, box-shadow .2s ease, border-color .2s ease }
+    .btn:hover{ transform: translateY(-1px); box-shadow:0 8px 24px rgba(0,0,0,.35); border-color: rgba(255,255,255,.28) }
+
+    .zzz{ position:absolute; left:16px; top:-18px; font-weight:700; opacity:.85; text-shadow:0 0 10px rgba(255,255,255,.35)}
+    .zzz span{ display:block; animation: drift 5.5s ease-in-out infinite; }
+    .zzz span:nth-child(2){ animation-delay:.6s }
+    .zzz span:nth-child(3){ animation-delay:1.2s }
+    @keyframes drift{0%{transform:translateY(0) translateX(0); opacity:.4}50%{transform:translateY(-10px) translateX(4px); opacity:.8}100%{transform:translateY(0) translateX(0); opacity:.4}}
+
+    footer{ position:fixed; left:0; right:0; bottom:10px; text-align:center; font-size:12px; opacity:.6 }
+  </style>
+</head>
+<body>
+  <div class="wrap" id="sky">
+    <div class="card">
+      <div class="moon" aria-hidden="true"></div>
+      <div class="zzz" aria-hidden="true"><span>Z</span><span>Z</span><span>Z</span></div>
+
+      <h1 class="title" id="title">Good night <span class="spark">✨</span></h1>
+      <p class="subtitle" id="subtitle">Sleep tight and have the sweetest dreams.</p>
+
+      <div class="chip" id="chip">Selamat malam, <b id="who">Helen</b> — semoga mimpimu indah.</div>
+
+      <div class="row">
+        <button class="btn" id="langBtn" aria-label="Ganti bahasa">Ganti ke Bahasa Indonesia</button>
+        <button class="btn" id="nameBtn" aria-label="Isi nama">Personalize nama</button>
+        <button class="btn" id="shootBtn" aria-label="Tembakkan bintang jatuh">Bintang jatuh</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>Tip: tambahkan <code>?name=Nama</code> di URL untuk menyapa seseorang ✨</footer>
+
+  <script>
+    const qs = new URLSearchParams(location.search);
+    const initialName = (qs.get('name') || 'Helen').trim();
+    const who = document.getElementById('who');
+
+    let isEN = true;
+    const t = {
+      en: {
+        title: 'Good night',
+        subtitle: 'Sleep tight and have the sweetest dreams.',
+        chip: (name) => `Good night, <b>${name||'Helen'}</b> — may your dreams be lovely.`,
+        langBtn: 'Switch to Indonesian',
+        nameBtn: 'Personalize name',
+      },
+      id: {
+        title: 'Selamat malam',
+        subtitle: 'Tidurlah nyenyak dan bermimpilah yang indah.',
+        chip: (name) => `Selamat malam, <b>${name||'Helen'}</b> — semoga mimpimu indah.`,
+        langBtn: 'Ganti ke English',
+        nameBtn: 'Ubah nama sapaan',
+      }
+    }
+
+    function renderCopy(){
+      const lang = isEN ? 'en' : 'id';
+      document.getElementById('title').innerHTML = t[lang].title + ' <span class="spark">✨</span>';
+      document.getElementById('subtitle').textContent = t[lang].subtitle;
+      document.getElementById('chip').innerHTML = t[lang].chip(currentName);
+      document.getElementById('langBtn').textContent = t[lang].langBtn;
+      document.getElementById('nameBtn').textContent = t[lang].nameBtn;
+    }
+
+    let currentName = initialName || 'Helen';
+    who.textContent = currentName;
+
+    document.getElementById('langBtn').addEventListener('click',()=>{
+      isEN = !isEN; renderCopy();
+    });
+    document.getElementById('nameBtn').addEventListener('click',()=>{
+      const ask = prompt(isEN? 'Whom should I wish good night to?' : 'Ingin menyapa siapa?');
+      if(ask!==null){ currentName = ask.trim() || 'Helen'; renderCopy(); }
+    });
+
+    const sky = document.getElementById('sky');
+    const STAR_COUNT = Math.min(220, Math.floor((innerWidth*innerHeight)/7000));
+    for(let i=0;i<STAR_COUNT;i++){
+      const s = document.createElement('span');
+      s.className='star';
+      const size = Math.random()<0.85 ? Math.random()*2 + 0.4 : Math.random()*3 + 1.2;
+      const x = Math.random()*100; const y = Math.random()*100;
+      const dur = 2.5 + Math.random()*4.5; const delay = Math.random()*6;
+      s.style.cssText = `left:${x}vw; top:${y}vh; width:${size}px; height:${size}px; background:rgba(255,255,255,${0.6+Math.random()*0.4}); animation: twinkle ${dur}s ease-in-out ${delay}s infinite;`;
+      sky.appendChild(s);
+    }
+
+    function shoot(){
+      const n = document.createElement('i'); n.className='shooting';
+      const ox = Math.random()*-40 - 10;
+      const oy = Math.random()*60 - 10;
+      n.style.top = oy + 'vh'; n.style.left = ox + 'vw';
+      document.body.appendChild(n);
+      setTimeout(()=>n.remove(), 2400);
+    }
+    document.getElementById('shootBtn').addEventListener('click', shoot);
+
+    setInterval(()=>{ if(Math.random()<0.35) shoot(); }, 4000);
+
+    renderCopy();
+  </script>
+</body>
+</html>
+
